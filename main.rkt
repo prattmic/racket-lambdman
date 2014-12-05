@@ -1,10 +1,11 @@
 #lang racket
 
-(define (main world-file)
-    (printf "world: ~a\n" world-file))
+(require racket/cmdline)
 
-(define args (current-command-line-arguments))
+(define world-file
+    (command-line
+     #:program "lambdaman"
+     #:args (filename) ; expect one argument, the filename
+     filename)) ; return the filename
 
-(if (equal? 1 (vector-length args))
-    (main (vector-ref args 0))
-    (printf "usage: main world.txt\n"))
+(printf "world: ~a\n" world-file)
