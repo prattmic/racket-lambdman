@@ -19,9 +19,13 @@
         [#\\ 'lambda-man]
         [#\= 'ghost]))
 
-(define world-map
-    (map
-     (lambda (line) (map world-char->world-symbol (string->list line)))
-     (file->lines world-file)))
+(define (read-world-map)
+    (define lines (file->lines world-file))
+    (filter (negate empty?) ; remove empty lines
+      (map
+        (lambda (line) (map world-char->world-symbol (string->list line)))
+        lines)))
+
+(define world-map (read-world-map))
 
 (print world-map)
