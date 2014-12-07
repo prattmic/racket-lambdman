@@ -4,7 +4,7 @@
 
 (provide
  ; Read map from file and provide it as a 2d list
- read-world-map)
+ read-map)
 
 (require racket/file)
 
@@ -19,8 +19,8 @@
   (define lengths (map length l))
   (list-equal? lengths))
 
-(define (world-char->world-symbol world-char)
-  (match world-char
+(define (map-char->map-symbol map-char)
+  (match map-char
     [#\space 'empty]
     [#\# 'wall]
     [#\. 'pill]
@@ -29,11 +29,11 @@
     [#\\ 'lambda-man]
     [#\= 'ghost]))
 
-(define/contract (read-world-map file)
+(define/contract (read-map file)
   (-> string? rectangular-2d-list?)
   (define lines (file->lines file))
   (filter (negate empty?) ; remove empty lines
-          (map (lambda (line) ; convert line to world symbols
-                       (map world-char->world-symbol
+          (map (lambda (line) ; convert line to map symbols
+                       (map map-char->map-symbol
                             (string->list line)))
                lines)))

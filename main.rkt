@@ -2,14 +2,14 @@
 
 (require racket/cmdline)
 
-(require "world.rkt")
+(require "map.rkt")
 
-(define world-file
+(define map-file
   (command-line
     #:program "lambdaman"
     #:args (filename) ; expect one argument, the filename
     filename)) ; return the filename
 
-(define world-map (read-world-map world-file))
+(define game-map (read-map map-file))
 
-(print world-map)
+(print game-map)
