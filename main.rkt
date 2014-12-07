@@ -12,4 +12,5 @@
 
 (define game-map (read-map map-file))
 
-(print game-map)
+(printf "Map:\n~a\n" game-map)
+(printf "Map level: ~a\n" (map-level game-map))
