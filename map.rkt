@@ -4,9 +4,7 @@
 
 (provide
  ; Read map from file and provide it as a 2d list
- read-map
- ; Level of the map
- map-level)
+ read-map)
 
 (require racket/file)
 
@@ -40,13 +38,3 @@
                             (string->list line)))
                lines)))
 
-(define (map-height m)
-  (length m))
-
-(define (map-width m)
-  (length (first m)))
-
-(define (map-level m)
-  (define size (* (map-height m) (map-width m)))
-  (define normalized-size (/ size 100))
-  (ceiling normalized-size))

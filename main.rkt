@@ -3,6 +3,7 @@
 (require racket/cmdline)
 
 (require "map.rkt")
+(require "world.rkt")
 
 (define map-file
   (command-line
@@ -10,7 +11,7 @@
     #:args (filename) ; expect one argument, the filename
     filename)) ; return the filename
 
-(define game-map (read-map map-file))
+(define world (new-world (read-map map-file)))
 
-(printf "Map:\n~a\n" game-map)
-(printf "Map level: ~a\n" (map-level game-map))
+(printf "World:\n~a\n" world)
+(printf "Map level: ~a\n" (world-map-level world))
