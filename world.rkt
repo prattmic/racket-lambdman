@@ -1,5 +1,7 @@
 #lang racket
 
+(require "map.rkt")
+
 (provide
  ; Generate a new world based on map
  new-world
@@ -10,7 +12,7 @@
         ; Display the map when displaying the world
         #:methods gen:custom-write
         [(define (write-proc world port mode)
-            (define m (world-map world))
+            (define m (map->string (world-map world)))
             (match mode
               [#t (write m port)]
               [#f (display m port)]
